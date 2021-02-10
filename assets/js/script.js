@@ -77,7 +77,16 @@ formEl.addEventListener("submit", taskFormHandler);
 var taskButtonHandler = function (event) {
     console.log(event.target);
     if (event.target.matches(".delete-btn")) {
-        console.log("you clicked a delete button!");
+        var taskId = event.target.getAttribute("data-task-id");
+        console.log(taskId);
     }
+    if (event.target.matches(".delete-btn")) {
+        var taskId = event.target.getAttribute("data-task-id");
+        deleteTask(taskId);
+    }
+};
+var deleteTask = function (taskId) {
+    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+    taskSelected.remove();
 };
 pageContentEl.addEventListener("click", taskButtonHandler);
